@@ -11,6 +11,9 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (!$request->user() || $request->user()->role !== 'admin') {
+            if ($request->wantsJson()) {
+                return response()->json(['message' => 'Unauthorized access.'], 403);
+            }
             return redirect()->route('dashboard')->with('error', 'Unauthorized access.');
         }
 

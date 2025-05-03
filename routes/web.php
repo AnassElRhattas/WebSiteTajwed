@@ -34,9 +34,14 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // Student routes
-    Route::name('student.')->group(function () {
-        Route::get('/dashboard', [StudentDashboardController::class, 'index'])->name('dashboard');
+    Route::middleware(['auth'])->name('student.')->group(function () {
+        Route::get('/student/dashboard', [StudentDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/student/progress', [StudentDashboardController::class, 'progress'])->name('progress');
         
+        // Modules
+        Route::get('/modules', [StudentLessonController::class, 'index'])->name('modules');
+        Route::get('/modules/{module}', [StudentLessonController::class, 'show'])->name('modules.show');
+
         // Lessons
         Route::get('/lessons', [StudentLessonController::class, 'index'])->name('lessons.index');
         Route::get('/lessons/{lesson}', [StudentLessonController::class, 'show'])->name('lessons.show');
@@ -47,5 +52,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/quizzes/{quiz}', [StudentQuizController::class, 'show'])->name('quizzes.show');
         Route::post('/quizzes/{quiz}/submit', [StudentQuizController::class, 'submit'])->name('quizzes.submit');
         Route::get('/quiz-history', [StudentQuizController::class, 'history'])->name('quizzes.history');
+
+        // Achievements
+        Route::get('/achievements', [StudentDashboardController::class, 'achievements'])->name('achievements');
+
+        // Profile
+        Route::get('/profile', [StudentDashboardController::class, 'profile'])->name('profile');
+        Route::post('/profile', [StudentDashboardController::class, 'updateProfile'])->name('profile.update');
+
+        // Settings
+        Route::get('/settings', [StudentDashboardController::class, 'settings'])->name('settings');
+        Route::post('/settings', [StudentDashboardController::class, 'updateSettings'])->name('settings.update');
     });
 });

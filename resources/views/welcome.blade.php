@@ -20,9 +20,9 @@
                         <div class="space-x-4">
                             @auth
                                 @if (auth()->user()->role === 'admin')
-                                    <a href="{{ route('admin.dashboard') }}" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-semibold">Dashboard</a>
+                                    <a href="{{ route('admin.dashboard') }}" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-semibold">Dashboard Admin</a>
                                 @else
-                                    <a href="{{ route('student.dashboard') }}" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-semibold">Dashboard</a>
+                                    <a href="{{ route('student.dashboard') }}" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-semibold">Dashboard User</a>
                                 @endif
                             @else
                                 <a href="{{ route('login') }}" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-semibold">Se connecter</a>

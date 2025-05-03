@@ -1,3 +1,18 @@
+<script setup>
+import { Link } from '@inertiajs/vue3';
+import StudentLayout from '@/Layouts/StudentLayout.vue';
+
+defineProps({
+    totalLessons: Number,
+    completedLessons: Number,
+    currentModule: Object,
+    currentModuleProgress: Number,
+    recentAchievements: Array,
+    quizResults: Array,
+    overallProgress: Number
+});
+</script>
+
 <template>
     <StudentLayout>
         <template #header>
@@ -131,18 +146,3 @@
         </div>
     </StudentLayout>
 </template>
-
-<script setup>
-import { Link } from '@inertiajs/vue3'
-import StudentLayout from '@/Layouts/StudentLayout.vue'
-
-defineProps({
-    overallProgress: Number,
-    completedLessons: Number,
-    totalLessons: Number,
-    currentModule: Object,
-    currentModuleProgress: Number,
-    recentAchievements: Array,
-    quizResults: Array
-})
-</script>
