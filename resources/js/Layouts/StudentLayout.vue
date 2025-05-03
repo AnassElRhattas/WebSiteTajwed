@@ -1,5 +1,6 @@
 <template>
     <div>
+        <LoadingOverlay :show="isLoading" message="Logging out..." />
         <div class="min-h-screen bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,7 +66,7 @@
                                         <DropdownLink :href="route('student.settings')">
                                             Settings
                                         </DropdownLink>
-                                        <DropdownLink :href="route('logout')" method="post" as="button">
+                                        <DropdownLink :href="route('logout')" method="post" as="button" @click="handleLogout">
                                             Log Out
                                         </DropdownLink>
                                     </template>
@@ -121,7 +122,7 @@
                             <ResponsiveNavLink :href="route('student.settings')">
                                 Settings
                             </ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('logout')" method="post" as="button">
+                            <ResponsiveNavLink :href="route('logout')" method="post" as="button" @click="handleLogout">
                                 Log Out
                             </ResponsiveNavLink>
                         </div>
@@ -146,8 +147,21 @@
 
 <script setup>
 import { ref } from 'vue'
-import { Link } from '@inertiajs/vue3'
+import { Link, router } from '@inertiajs/vue3'
 import ApplicationLogo from '@/Components/ApplicationLogo.vue'
+import LoadingOverlay from '@/Components/LoadingOverlay.vue'
+
+const isLoading = ref(false)
+
+const handleLogout = () => {
+    isLoading.value = true
+    router.post(route('logout'), {}, {
+        preserveScroll: true,
+        onFinish: () => {
+            isLoading.value = false
+        }
+    })
+}
 import Dropdown from '@/Components/Dropdown.vue'
 import DropdownLink from '@/Components/DropdownLink.vue'
 import NavLink from '@/Components/NavLink.vue'
