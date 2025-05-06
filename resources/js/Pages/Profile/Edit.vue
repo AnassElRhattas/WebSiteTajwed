@@ -1,5 +1,5 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import StudentLayout from '@/Layouts/StudentLayout.vue';
 import DeleteUserForm from './Partials/DeleteUserForm.vue';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue';
@@ -16,14 +16,14 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Profile" />
+    <Head title="الملف الشخصي" />
 
-    <AuthenticatedLayout>
+    <StudentLayout>
         <template #header>
             <h2
                 class="text-xl font-semibold leading-tight text-gray-800"
             >
-                Profile
+                الملف الشخصي
             </h2>
         </template>
 
@@ -52,5 +52,5 @@ defineProps({
                 </div>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </StudentLayout>
 </template>

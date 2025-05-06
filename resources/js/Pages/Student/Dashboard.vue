@@ -17,7 +17,7 @@ defineProps({
     <StudentLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                My Learning Dashboard
+                لوحة التعلم الخاصة بي
             </h2>
         </template>
 
@@ -26,7 +26,7 @@ defineProps({
                 <!-- Progress Overview -->
                 <div class="mb-8 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">Overall Progress</h3>
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">التقدم الإجمالي</h3>
                         <div v-if="totalLessons > 0">
                             <div class="w-full h-4 bg-gray-200 rounded-full">
                                 <div class="h-full bg-green-500 rounded-full"
@@ -34,14 +34,14 @@ defineProps({
                                 </div>
                             </div>
                             <p class="mt-2 text-sm text-gray-600">
-                                {{ completedLessons }} of {{ totalLessons }} lessons completed
+                                {{ completedLessons }} من {{ totalLessons }} دروس مكتملة
                             </p>
                         </div>
                         <div v-else class="text-center py-4">
-                            <p class="text-gray-600">Start your learning journey by exploring our modules!</p>
+                            <p class="text-gray-600">ابدأ رحلة التعلم باستكشاف وحداتنا!</p>
                             <Link :href="route('student.modules')"
                                   class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-                                Browse Modules
+                                تصفح الوحدات
                             </Link>
                         </div>
                     </div>
@@ -50,7 +50,7 @@ defineProps({
                 <!-- Current Module -->
                 <div class="mb-8 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">Current Module</h3>
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">الوحدة الحالية</h3>
                         <div v-if="currentModule" class="space-y-4">
                             <div class="flex justify-between items-center">
                                 <div>
@@ -59,11 +59,11 @@ defineProps({
                                 </div>
                                 <Link :href="route('student.lessons', currentModule.id)"
                                       class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-                                    Continue Learning
+                                    متابعة التعلم
                                 </Link>
                             </div>
                             <div class="mt-4">
-                                <p class="text-sm text-gray-600 mb-2">Module Progress</p>
+                                <p class="text-sm text-gray-600 mb-2">تقدم الوحدة</p>
                                 <div class="w-full h-2 bg-gray-200 rounded-full">
                                     <div class="h-full bg-blue-500 rounded-full"
                                          :style="{ width: `${currentModuleProgress}%` }">
@@ -72,10 +72,10 @@ defineProps({
                             </div>
                         </div>
                         <div v-else class="text-center py-8">
-                            <p class="text-gray-600">No module in progress</p>
+                            <p class="text-gray-600">لا توجد وحدة قيد التقدم</p>
                             <Link :href="route('student.modules')"
                                   class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-                                Start Learning
+                                ابدأ التعلم
                             </Link>
                         </div>
                     </div>
@@ -86,7 +86,7 @@ defineProps({
                     <!-- Recent Achievements -->
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6">
-                            <h3 class="text-lg font-medium text-gray-900 mb-4">Recent Achievements</h3>
+                            <h3 class="text-lg font-medium text-gray-900 mb-4">الإنجازات الأخيرة</h3>
                             <div v-if="recentAchievements && recentAchievements.length > 0" class="space-y-4">
                                 <div v-for="achievement in recentAchievements" :key="achievement.id"
                                      class="flex items-center p-3 bg-gray-50 rounded-lg">
@@ -108,7 +108,7 @@ defineProps({
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                                           d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <p class="mt-4 text-gray-600">Complete lessons and quizzes to earn achievements!</p>
+                                <p class="mt-4 text-gray-600">أكمل الدروس والاختبارات لكسب الإنجازات!</p>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@ defineProps({
                     <!-- Quiz Results -->
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6">
-                            <h3 class="text-lg font-medium text-gray-900 mb-4">Recent Quiz Results</h3>
+                            <h3 class="text-lg font-medium text-gray-900 mb-4">نتائج الاختبارات الأخيرة</h3>
                             <div v-if="quizResults && quizResults.length > 0" class="space-y-4">
                                 <div v-for="result in quizResults" :key="result.id"
                                      class="p-3 bg-gray-50 rounded-lg">
@@ -137,7 +137,7 @@ defineProps({
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                                           d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                 </svg>
-                                <p class="mt-4 text-gray-600">Take quizzes to see your results here!</p>
+                                <p class="mt-4 text-gray-600">خذ الاختبارات لرؤية نتائجك هنا!</p>
                             </div>
                         </div>
                     </div>

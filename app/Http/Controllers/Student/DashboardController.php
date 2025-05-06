@@ -5,9 +5,19 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class DashboardController extends Controller
 {
+    public function edit(Request $request)
+    {
+        $user = $request->user();
+        return Inertia::render('Profile/Edit', [
+            'mustVerifyEmail' => $user instanceof MustVerifyEmail,
+            'status' => session('status'),
+        ]);
+    }
+
     public function index(Request $request)
     {
         $user = $request->user();

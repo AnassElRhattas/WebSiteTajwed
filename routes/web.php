@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\QuizController;
 use App\Http\Controllers\Student\DashboardController as StudentDashboardController;
 use App\Http\Controllers\Student\LessonController as StudentLessonController;
 use App\Http\Controllers\Student\QuizController as StudentQuizController;
+use App\Http\Controllers\Student\ModuleController as StudentModuleController;
 use Illuminate\Support\Facades\Route;
 
 // Root route
@@ -38,15 +39,17 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student/dashboard', [StudentDashboardController::class, 'index'])->name('dashboard');
         Route::get('/student/progress', [StudentDashboardController::class, 'progress'])->name('progress');
         
-        // Modules
-        Route::get('/modules', [StudentLessonController::class, 'index'])->name('modules');
-        Route::get('/modules/{module}', [StudentLessonController::class, 'show'])->name('modules.show');
-
-        // Lessons
-        Route::get('/lessons', [StudentLessonController::class, 'index'])->name('lessons.index');
-        Route::get('/lessons/{lesson}', [StudentLessonController::class, 'show'])->name('lessons.show');
-        Route::post('/lessons/{lesson}/complete', [StudentLessonController::class, 'markAsCompleted'])
-            ->name('lessons.complete');
+        // Modules and Lessons
+        Route::prefix('modules')->group(function () {
+            Route::get('/', [StudentModuleController::class, 'index'])->name('modules');
+            Route::get('/{module}', [StudentModuleController::class, 'show'])->name('modules.show');
+            Route::get('/{module}/lessons/{lesson}', [StudentLessonController::class, 'show'])->name('lessons.show');
+            Route::post('/{module}/lessons/{lesson}/complete', [StudentLessonController::class, 'completeLesson'])->name('lessons.complete');
+        });
+        
+        // Student Modules (for direct module access)
+        Route::get('/modules', [StudentModuleController::class, 'index'])->name('modules');
+        Route::get('/modules/{module}', [StudentModuleController::class, 'show'])->name('modules.show');
 
         // Quizzes
         Route::get('/quizzes/{quiz}', [StudentQuizController::class, 'show'])->name('quizzes.show');
@@ -57,8 +60,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/achievements', [StudentDashboardController::class, 'achievements'])->name('achievements');
 
         // Profile
-        Route::get('/profile', [StudentDashboardController::class, 'profile'])->name('profile');
-        Route::post('/profile', [StudentDashboardController::class, 'updateProfile'])->name('profile.update');
+        Route::get('/profile', [StudentDashboardController::class, 'edit'])->name('edit');
+        // Route::patch('/profile', [StudentDashboardController::class, 'update'])->name('update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('destroy');
 
         // Settings
         Route::get('/settings', [StudentDashboardController::class, 'settings'])->name('settings');
