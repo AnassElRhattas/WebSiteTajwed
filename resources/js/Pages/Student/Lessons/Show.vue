@@ -79,7 +79,7 @@ import { Link } from '@inertiajs/vue3'
 import { router } from '@inertiajs/vue3'
 import { ref, onMounted } from 'vue'
 import '../../../../css/app.css'
-import TajweedRegles from '@/Components/TajweedRegles.vue'
+import TajweedRegles from '../../../Components/TajwedRegles.vue'
 
 
 const props = defineProps({
