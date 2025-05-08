@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  tajweed.ham_wasl { @apply text-[#AAAAAA]; }
+  tajweed.slnt { @apply text-[#AAAAAA]; }
+  tajweed.laam_shamsiyah { @apply text-[#AAAAAA]; }
+  tajweed.madda_normal { @apply text-[#537FFF]; }
+  tajweed.madda_permissible { @apply text-[#4050FF]; }
+  tajweed.madda_necessary { @apply text-[#000EBC]; }
+  tajweed.madda_pbligatory { @apply text-[#2144C1]; }
+  tajweed.qlq { @apply text-[#DD0008]; }
+  tajweed.ikhf_shfw { @apply text-[#D500B7]; }
+  tajweed.ikhf { @apply text-[#9400A8]; }
+  tajweed.idghm_shfw { @apply text-[#58B800]; }
+  tajweed.iqlb { @apply text-[#26BFFD]; }
+  tajweed.idgh_ghn { @apply text-[#169777]; }
+  tajweed.idgh_w_ghn { @apply text-[#169200]; }
+  tajweed.idgh_mus { @apply text-[#A1A1A1]; }
+  tajweed.ghn { @apply text-[#FF7E1E]; }
+
+  span.end { @apply text-gray-500 text-sm; }
+}

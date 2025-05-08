@@ -19,14 +19,15 @@
                         <div class="prose max-w-none">
                             <div v-html="lesson.content"></div>
 
-                        
+
                             <!-- Quran Verses Section -->
                             <div v-if="chapters.length" class="mt-12 p-6 bg-gray-100 rounded-lg">
                                 <h3 class="text-lg font-medium text-gray-900 mb-4">آيات من القرآن الكريم</h3>
                                 <div class="space-y-4">
                                     <div v-for="verse in chapters" :key="verse.id"
                                         class="bg-white p-4 shadow rounded text-right">
-                                        <p class="text-xl font-arabic">{{ verse.text_uthmani_tajweed }}</p>
+                                        <p class="text-2xl font-arabic leading-loose text-right"
+                                            v-html="verse.text_uthmani_tajweed"></p>
                                     </div>
                                 </div>
                             </div>
@@ -48,6 +49,10 @@
                                     </p>
                                 </div>
                             </div>
+                        </div>
+                        <!-- Tajweed Legend Component -->
+                        <div class="mt-6">
+                            <TajweedRegles />
                         </div>
 
                         <!-- Actions -->
@@ -73,6 +78,9 @@
 import { Link } from '@inertiajs/vue3'
 import { router } from '@inertiajs/vue3'
 import { ref, onMounted } from 'vue'
+import '../../../../css/app.css'
+import TajweedRegles from '@/Components/TajweedRegles.vue'
+
 
 const props = defineProps({
     lesson: Object
@@ -92,10 +100,10 @@ async function loadChapters() {
         const data = await response.json()
         console.log('Chapters API response:', data)
 
-        if (data.chapters) {
-            chapters.value = data.chapters.filter(verse => verse.verse_key === '1:1')
+        if (data.verses) {
+            chapters.value = data.verses
         } else {
-            apiError.value = 'La réponse ne contient pas de chapitres.'
+            apiError.value = 'La réponse ne contient pas de versets.'
         }
     } catch (error) {
         console.error('Erreur lors du chargement des chapitres :', error)

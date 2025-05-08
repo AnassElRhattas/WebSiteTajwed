@@ -42,7 +42,7 @@ class QuranApiService
         ])->withHeaders([
             'x-auth-token' => $token,
             'x-client-id' => config('services.quran.client_id'),
-        ])->get('https://apis-prelive.quran.foundation/content/api/v4//quran/verses/uthmani_tajweed');
+        ])->get('https://apis-prelive.quran.foundation/content/api/v4/quran/verses/uthmani_tajweed');
 
         return $response->json();
     }

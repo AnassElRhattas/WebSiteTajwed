@@ -9,6 +9,24 @@ export default {
         './resources/views/**/*.blade.php',
         './resources/js/**/*.vue',
     ],
+    safelist: [
+        'ham_wasl',
+        'slnt',
+        'laam_shamsiyah',
+        'madda_normal',
+        'madda_permissible',
+        'madda_necessary',
+        'madda_pbligatory',
+        'qlq',
+        'ikhf_shfw',
+        'ikhf',
+        'idghm_shfw',
+        'iqlb',
+        'idgh_ghn',
+        'idgh_w_ghn',
+        'idgh_mus',
+        'ghn',
+      ],
 
     theme: {
         extend: {
