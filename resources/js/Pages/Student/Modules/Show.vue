@@ -1,6 +1,5 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
-import StudentLayout from '@/Layouts/StudentLayout.vue';
 import { Link } from '@inertiajs/vue3';
 
 defineProps({
@@ -14,18 +13,20 @@ defineProps({
 <template>
     <Head :title="module.title" />
 
-    <StudentLayout>
-        <template #header>
-            <div class="flex justify-between items-center px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200">
-                    {{ module.title }}
-                </h2>
-                <Link :href="route('student.modules')" class="items-center px-4 py-2 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-50 dark:hover:bg-blue-900 transition-all">
-                    <span class="mr-2"> ← </span>
-                    العودة إلى الوحدات
-                </Link>
+    <div class="min-h-screen bg-gray-100">
+        <div class="bg-white shadow">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200">
+                        {{ module.title }}
+                    </h2>
+                    <Link :href="route('student.modules')" class="items-center px-4 py-2 border border-blue-600 text-blue-600 rounded-full hover:bg-blue-50 dark:hover:bg-blue-900 transition-all">
+                        <span class="mr-2"> ← </span>
+                        العودة إلى الوحدات
+                    </Link>
+                </div>
             </div>
-        </template>
+        </div>
 
         <div class="py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,5 +81,5 @@ defineProps({
                 </div>
             </div>
         </div>
-    </StudentLayout>
+    </div>
 </template>

@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'quran' => [
+        'client_id' => env('QURAN_API_CLIENT_ID'),
+        'client_secret' => env('QURAN_API_CLIENT_SECRET'),
+        'endpoint' => env('QURAN_API_ENDPOINT', 'https://prelive-oauth2.quran.foundation'),
+    ],
+
 ];

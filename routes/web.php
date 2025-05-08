@@ -11,6 +11,7 @@ use App\Http\Controllers\Student\LessonController as StudentLessonController;
 use App\Http\Controllers\Student\QuizController as StudentQuizController;
 use App\Http\Controllers\Student\ModuleController as StudentModuleController;
 use Illuminate\Support\Facades\Route;
+use App\Services\QuranApiService;
 
 // Root route
 Route::get('/', function () {
@@ -40,11 +41,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/student/progress', [StudentDashboardController::class, 'progress'])->name('progress');
         
         // Modules and Lessons
-        Route::prefix('modules')->group(function () {
-            Route::get('/', [StudentModuleController::class, 'index'])->name('modules');
-            Route::get('/{module}', [StudentModuleController::class, 'show'])->name('modules.show');
-            Route::get('/{module}/lessons/{lesson}', [StudentLessonController::class, 'show'])->name('lessons.show');
-            Route::post('/{module}/lessons/{lesson}/complete', [StudentLessonController::class, 'completeLesson'])->name('lessons.complete');
+        Route::middleware(['auth'])->group(function () {
+            Route::prefix('modules')->group(function () {
+                Route::get('/{module}/lessons/{lesson}', [StudentLessonController::class, 'show'])
+                    ->name('lessons.show');
+                Route::post('/{module}/lessons/{lesson}/complete', [StudentLessonController::class, 'completeLesson'])->name('lessons.complete');
+            });
         });
         
         // Student Modules (for direct module access)
@@ -67,5 +69,9 @@ Route::middleware(['auth'])->group(function () {
         // Settings
         Route::get('/settings', [StudentDashboardController::class, 'settings'])->name('settings');
         Route::post('/settings', [StudentDashboardController::class, 'updateSettings'])->name('settings.update');
+
+        // Quran API
+        Route::get('/chapters', [StudentLessonController::class, 'showChapters']);
+        Route::get('/test-token', [QuranApiService::class, 'getAccessToken']);
     });
 });

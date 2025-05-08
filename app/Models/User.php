@@ -78,13 +78,8 @@ class User extends Authenticatable
      */
     public function modules()
     {
-        return $this->hasManyThrough(
-            Module::class,
-            Lesson::class,
-            'module_id',
-            'id',
-            'id',
-            'module_id'
-        );
+        return $this->belongsToMany(Module::class, 'user_progress')
+            ->withPivot('lesson_completed')
+            ->withTimestamps();
     }
 }
