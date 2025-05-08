@@ -95,13 +95,17 @@ const completeLesson = () => {
 
 // Appel API pour récupérer les chapitres du Coran
 async function loadChapters() {
+    const selectedVerseKeys = ['1:1', '2:13', '2:286']
+
     try {
         const response = await fetch('/chapters')
         const data = await response.json()
         console.log('Chapters API response:', data)
 
         if (data.verses) {
-            chapters.value = data.verses
+            // Filtrer les versets en fonction des verse_key souhaités
+            const filteredVerses = data.verses.filter(v => selectedVerseKeys.includes(v.verse_key))
+            chapters.value = filteredVerses
         } else {
             apiError.value = 'La réponse ne contient pas de versets.'
         }
@@ -110,6 +114,8 @@ async function loadChapters() {
         apiError.value = 'Impossible de charger les chapitres du Coran.'
     }
 }
+
+
 
 // Charger les chapitres au montage du composant
 onMounted(() => {
