@@ -13,7 +13,7 @@ defineProps({
 <template>
     <Head :title="module.title" />
 
-    <div class="min-h-screen bg-gray-100">
+    <div dir="rtl" class="min-h-screen bg-gray-100">
         <div class="bg-white shadow">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center px-6 py-4 border-b border-gray-200 dark:border-gray-700">

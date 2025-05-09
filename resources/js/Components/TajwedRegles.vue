@@ -3,9 +3,10 @@
         <h2 class="text-2xl font-bold text-gray-800 mb-4">قواعد التجويد</h2>
         <ul class="flex flex-wrap gap-4">
             <li v-for="rule in tajweedRules" :key="rule.id" class="flex items-center gap-2 min-w-[200px]">
-                <span class="text-lg text-gray-700 font-arabic">{{ rule.name }}</span>
+                
                 <span class="w-3 h-3 rounded-full border" :style="{ backgroundColor: rule.color }"
                     :title="rule.id"></span>
+                    <span class="text-lg text-gray-700 font-arabic">{{ rule.name }}</span>
             </li>
         </ul>
     </div>

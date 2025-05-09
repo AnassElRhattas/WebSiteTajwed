@@ -12,8 +12,14 @@ class Lesson extends Model
         'content',
         'explanation',
         'order',
-        'is_active'
+        'is_active',
+        'verse_keys',
     ];
+
+    protected $casts = [
+        'verse_keys' => 'array',
+    ];
+    
 
     public function module()
     {

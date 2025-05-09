@@ -39,6 +39,7 @@
                         'id' => $nextLesson->id,
                         'title' => $nextLesson->title,
                     ] : null,
+                    'verse_keys' => $lesson->verse_keys ?? [],
                 ]),
             ]);
         }

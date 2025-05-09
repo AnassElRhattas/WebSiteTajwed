@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-gray-100">
+    <div dir="rtl" class="min-h-screen bg-gray-100">
         <div class="p-4 bg-white shadow">
             <div class="max-w-7xl mx-auto flex justify-between items-center">
                 <h2 class="text-xl font-semibold leading-tight text-gray-800">
@@ -93,29 +93,25 @@ const completeLesson = () => {
     router.post(route('student.lesson.complete', props.lesson.id))
 }
 
-// Appel API pour récupérer les chapitres du Coran
-async function loadChapters() {
-    const selectedVerseKeys = ['1:1', '2:13', '2:286']
+const selectedVerseKeys = props.lesson.verse_keys || []
 
+async function loadChapters() {
     try {
         const response = await fetch('/chapters')
         const data = await response.json()
-        console.log('Chapters API response:', data)
 
         if (data.verses) {
-            // Filtrer les versets en fonction des verse_key souhaités
-            const filteredVerses = data.verses.filter(v => selectedVerseKeys.includes(v.verse_key))
+            const filteredVerses = data.verses.filter(v =>
+                selectedVerseKeys.includes(v.verse_key)
+            )
             chapters.value = filteredVerses
         } else {
             apiError.value = 'La réponse ne contient pas de versets.'
         }
     } catch (error) {
-        console.error('Erreur lors du chargement des chapitres :', error)
-        apiError.value = 'Impossible de charger les chapitres du Coran.'
+        apiError.value = 'Erreur lors du chargement des versets.'
     }
 }
-
-
 
 // Charger les chapitres au montage du composant
 onMounted(() => {
